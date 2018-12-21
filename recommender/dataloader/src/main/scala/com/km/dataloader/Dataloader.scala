@@ -110,7 +110,9 @@ object Dataloader {
       val attr = item.split(",")
       Rating(attr(0).toInt, attr(1).toInt, attr(2).toDouble, attr(3).toInt)
     }).toDF()
-
+    println("============================")
+    println(ratingDF.first())
+    println("============================")
 
     val tagRDD = spark.sparkContext.textFile(TAG_DATA_PATH)
     //将tagRDD转换为DataFrame
@@ -122,7 +124,7 @@ object Dataloader {
     implicit val mongoConfig = MongoConfig(config.get("mongo.uri").get,config.get("mongo.db").get)
 
     //将数据保存到mongodb
-    //storeDataInMongoDB(movieDF,ratingDF,tagDF)
+    storeDataInMongoDB(movieDF,ratingDF,tagDF)
 
 
     //新的movie数据集(额外增加了tag字段)
@@ -153,7 +155,7 @@ object Dataloader {
     implicit val esConfig = ESconfig(config.get("es.httpHosts").get,config.get("es.transportHosts").get,
       config.get("es.index").get,config.get("es.cluster.name").get)
     //将数据保存到es
-    storeDataInES(movieWithTagsDF)
+    //storeDataInES(movieWithTagsDF)
 
     //关闭spark
     spark.stop()

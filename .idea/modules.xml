@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/RecommendSystem.iml" filepath="$PROJECT_DIR$/RecommendSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommender/dataloader/dataloader.iml" filepath="$PROJECT_DIR$/recommender/dataloader/dataloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommender/recommender.iml" filepath="$PROJECT_DIR$/recommender/recommender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommender/statisticsRecommender/statisticsRecommender.iml" filepath="$PROJECT_DIR$/recommender/statisticsRecommender/statisticsRecommender.iml" />
     </modules>
   </component>
 </project>
