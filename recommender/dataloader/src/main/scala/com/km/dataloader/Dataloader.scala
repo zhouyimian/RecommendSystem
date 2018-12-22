@@ -110,9 +110,6 @@ object Dataloader {
       val attr = item.split(",")
       Rating(attr(0).toInt, attr(1).toInt, attr(2).toDouble, attr(3).toInt)
     }).toDF()
-    println("============================")
-    println(ratingDF.first())
-    println("============================")
 
     val tagRDD = spark.sparkContext.textFile(TAG_DATA_PATH)
     //将tagRDD转换为DataFrame
