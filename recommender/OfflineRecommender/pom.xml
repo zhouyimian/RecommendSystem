@@ -14,6 +14,7 @@
     <properties>
         <mongodb-spark.version>2.0.0</mongodb-spark.version>
         <casbah.version>3.1.1</casbah.version>
+        <jblas.version>1.2.1</jblas.version>
     </properties>
 
     <dependencies>
@@ -46,6 +47,12 @@
             <groupId>org.mongodb.spark</groupId>
             <artifactId>mongo-spark-connector_2.11</artifactId>
             <version>${mongodb-spark.version}</version>
+        </dependency>
+        <!-- 矩阵运算库-->
+        <dependency>
+            <groupId>org.scalanlp</groupId>
+            <artifactId>jblas</artifactId>
+            <version>${jblas.version}</version>
         </dependency>
     </dependencies>
 
