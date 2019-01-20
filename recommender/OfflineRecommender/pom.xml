@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.km</groupId>
+            <artifactId>coremodel</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
         </dependency>

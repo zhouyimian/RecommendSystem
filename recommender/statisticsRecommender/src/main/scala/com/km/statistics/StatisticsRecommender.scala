@@ -4,41 +4,14 @@ package com.km.statistics
 import java.text.SimpleDateFormat
 import java.util.Date
 
+import com.km.scala.model._
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
+import com.km.java.model.Constant._
 
-case class Movie(val mid: Int, val name: String, val descri: String, val timelong: String, val issue: String, val shoot: String, val language: String, val genres: String, val actors: String, val directors: String)
 
-case class Rating(val uid: Int, val mid: Int, val score: Double, val timestamp: Int)
-
-case class MongoConfig(val uri: String, val db: String)
-
-/**
-  * 推荐对象
-  * @param mid       推荐电影的mid
-  * @param score    推荐电影评分
-  */
-case class Recommendation(mid:Int,score:Double)
-
-/**
-  * 电影类别推荐结果
-  * @param genres    电影类别
-  * @param recs       Top10的电影集合
-  */
-case class GenresRecommendation(genres:String,recs:Seq[Recommendation])
 
 object StatisticsRecommender {
-
-  val MONGODN_MOVIE_COLLECTION = "Movie"
-  val MONGODN_RATING_COLLECTION = "Rating"
-
-
-  //统计生成表的名称
-  val RATE_MORE_MOVIES = "RateMoreMovies"
-  val RATE_MORE_RECENTLY_MOVIES = "RateMoreRecentlyMovies"
-  val AVERAGE_MOVIES = "AverageMovies"
-  val GENRES_TOP_MOVIES = "GenresTopMovies"
-
 
   def main(args: Array[String]): Unit = {
     val config = Map(
@@ -62,16 +35,16 @@ object StatisticsRecommender {
     val ratingDF = spark
       .read
       .option("uri", mongoConfig.uri)
-      .option("collection", MONGODN_RATING_COLLECTION)
+      .option("collection", MONGODB_RATING_COLLECTION)
       .format("com.mongodb.spark.sql")
       .load()
-      .as[Rating]
+      .as[MovieRating]
       .toDF()
 
     val movieDF = spark
       .read
       .option("uri", mongoConfig.uri)
-      .option("collection", MONGODN_MOVIE_COLLECTION)
+      .option("collection", MONGODB_MOVIE_COLLECTION)
       .format("com.mongodb.spark.sql")
       .load()
       .as[Movie]
@@ -86,9 +59,9 @@ object StatisticsRecommender {
     rateMoreMoviesDF
       .write
       .option("uri",mongoConfig.uri)
-      .option("collection",RATE_MORE_MOVIES)
+      .option("collection",MONGODB_RATE_MORE_MOVIES)
       .mode("overwrite")
-      .format("com.mongodb.spark.sql")
+      .format(MONGO_DRIVER_CLASS)
       .save()
 
     //统计以月为单位每个电影的评分数
@@ -111,9 +84,9 @@ object StatisticsRecommender {
     rateMoreRecentlyMovies
       .write
       .option("uri",mongoConfig.uri)
-      .option("collection",RATE_MORE_RECENTLY_MOVIES)
+      .option("collection",MONGODB_RATE_MORE_RECENTLY_MOVIES)
       .mode("overwrite")
-      .format("com.mongodb.spark.sql")
+      .format(MONGO_DRIVER_CLASS)
       .save()
 
 
@@ -123,9 +96,9 @@ object StatisticsRecommender {
     averageMovies
       .write
       .option("uri",mongoConfig.uri)
-      .option("collection",AVERAGE_MOVIES)
+      .option("collection",MONGODB_AVERAGE_MOVIES)
       .mode("overwrite")
-      .format("com.mongodb.spark.sql")
+      .format(MONGO_DRIVER_CLASS)
       .save()
     //每种电影类别中评分最高的十个电影
     val movieWithScore = movieDF.join(averageMovies,Seq("mid","mid"))
@@ -151,9 +124,9 @@ object StatisticsRecommender {
     genrenTopMovies
       .write
       .option("uri",mongoConfig.uri)
-      .option("collection",GENRES_TOP_MOVIES)
+      .option("collection",MONGODB_GENRES_TOP_MOVIES)
       .mode("overwrite")
-      .format("com.mongodb.spark.sql")
+      .format(MONGO_DRIVER_CLASS)
       .save()
 
     //关闭spark

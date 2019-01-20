@@ -6,18 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="businessServer" />
+        <module name="coremodel" />
         <module name="dataloader" />
+        <module name="KafkaStream" />
         <module name="OfflineRecommender" />
         <module name="statisticsRecommender" />
+        <module name="StreamingRecommender" />
+        <module name="website" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="businessServer" target="1.8" />
+      <module name="coremodel" target="1.8" />
       <module name="dataloader" target="1.8" />
-      <module name="mainModel" target="1.8" />
+      <module name="KafkaStream" target="1.8" />
       <module name="OfflineRecommender" target="1.8" />
       <module name="recommender" target="1.8" />
       <module name="RecommendSystem" target="1.8" />
       <module name="statisticsRecommender" target="1.8" />
+      <module name="StreamingRecommender" target="1.8" />
+      <module name="website" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

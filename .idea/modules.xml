@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/recommender/KafkaStream/KafkaStream.iml" filepath="$PROJECT_DIR$/recommender/KafkaStream/KafkaStream.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommender/OfflineRecommender/OfflineRecommender.iml" filepath="$PROJECT_DIR$/recommender/OfflineRecommender/OfflineRecommender.iml" />
       <module fileurl="file://$PROJECT_DIR$/RecommendSystem.iml" filepath="$PROJECT_DIR$/RecommendSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommender/StreamingRecommender/StreamingRecommender.iml" filepath="$PROJECT_DIR$/recommender/StreamingRecommender/StreamingRecommender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/businessServer/businessServer.iml" filepath="$PROJECT_DIR$/businessServer/businessServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coremodel/coremodel.iml" filepath="$PROJECT_DIR$/coremodel/coremodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommender/dataloader/dataloader.iml" filepath="$PROJECT_DIR$/recommender/dataloader/dataloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommender/recommender.iml" filepath="$PROJECT_DIR$/recommender/recommender.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommender/statisticsRecommender/statisticsRecommender.iml" filepath="$PROJECT_DIR$/recommender/statisticsRecommender/statisticsRecommender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/website/website.iml" filepath="$PROJECT_DIR$/website/website.iml" />
     </modules>
   </component>
 </project>

@@ -1,12 +1,13 @@
 package com.km.offline
 
 import breeze.numerics.sqrt
+import com.km.scala.model.{MongoConfig, MovieRating}
 import org.apache.spark.SparkConf
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+import com.km.java.model.Constant._
 
-case class MongoConfig(val uri: String, val db: String)
 
 object ALSTriner {
 
@@ -29,8 +30,8 @@ object ALSTriner {
     val ratingRDD = spark
       .read
       .option("uri", mongoConfig.uri)
-      .option("collection", OfflineRecommender.MONGODB_RATING_COLLECTION)
-      .format("com.mongodb.spark.sql")
+      .option("collection", MONGODB_RATING_COLLECTION)
+      .format(MONGO_DRIVER_CLASS)
       .load()
       .as[MovieRating]
       .rdd
